@@ -8,11 +8,9 @@ const DetailDiv = styled.div``;
 
 const Detail: React.FC = () => {
   const params = useParams();
-  const prodotto: any = stockData.find((x) => x.UPC === params.id);
+  const prodotto = stockData.find((x) => x.UPC === params.id);
 
-  console.log(params.id);
-
-  return (
+  return prodotto ? (
     <DetailDiv>
       <ProductCard
         upc={prodotto.UPC}
@@ -21,7 +19,7 @@ const Detail: React.FC = () => {
         availability={prodotto.availability.stock}
       />
     </DetailDiv>
-  );
+  ) : null;
 };
 
 export default Detail;

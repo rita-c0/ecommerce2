@@ -2,7 +2,7 @@ import * as React from "react";
 import "./App.css";
 import styled from "styled-components";
 import Plp from "./pages/Plp";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Detail from "./components/Detail";
 
 const Container = styled.div`
@@ -16,10 +16,10 @@ const App: React.FC = () => {
       <header className="App-header">
         <Router>
           <Container>
-            <Routes>
-              <Route path="/dettaglio/:id" element={<Detail />} />
-              <Route path="/" element={<Plp />} />
-            </Routes>
+            <Switch>
+              <Route path="/dettaglio/:id" component={Detail} />
+              <Route path="/" component={Plp} />
+            </Switch>
           </Container>
         </Router>
       </header>
