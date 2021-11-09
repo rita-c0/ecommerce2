@@ -17,8 +17,8 @@ const App: React.FC = () => {
         <Router>
           <Container>
             <Routes>
-              <Route path="/" element={<Plp />} />
               <Route path="/dettaglio/:id" element={<Detail />} />
+              <Route path="/" element={<Plp />} />
             </Routes>
           </Container>
         </Router>
