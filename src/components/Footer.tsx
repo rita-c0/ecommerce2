@@ -23,8 +23,8 @@ const Footer: React.FC = () => {
   return (
     <FooterDiv>
       <LinkDiv>
-        <FooterLink href="https://twitter.com/?lang=it">TWITTER |</FooterLink>
-        <FooterLink href="https://twitter.com/?lang=it">FACEBOOK</FooterLink>
+        <FooterLink href="https://twitter.com/">TWITTER |</FooterLink>
+        <FooterLink href="https://facebook.com/"> FACEBOOK</FooterLink>
       </LinkDiv>
     </FooterDiv>
   );

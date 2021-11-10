@@ -1,14 +1,19 @@
 import * as React from "react";
 import styled from "styled-components";
-import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import ProductCard from "../components/Product";
+import Footer from "../components/Footer";
 import { stockData } from "../data/data";
 import { Product } from "../data/data";
 import { useState } from "react";
 
+const Container = styled.div`
+  height: 100%;
+  width: 100%;
+`;
+
 const PDiv = styled.div`
-  background-color:white;
+  background-color: white;
   width: 100%;
 `;
 
@@ -41,7 +46,7 @@ const Plp: React.FC = () => {
     }
   };
   return (
-    <div>
+    <Container>
       <Navbar
         text={text}
         setText={setText}
@@ -64,9 +69,9 @@ const Plp: React.FC = () => {
               ))}
           </CardDiv>
         </CardCont>
-        <Footer />
       </PDiv>
-    </div>
+      <Footer />
+    </Container>
   );
 };
 

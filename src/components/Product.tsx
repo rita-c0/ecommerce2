@@ -9,10 +9,6 @@ type Props = {
   availability: number;
 };
 
-// const Grid = styled.main`
-// background-color: black;
-// `;
-
 const Card = styled.div`
   margin-right: 10px;
   margin-bottom: 10px;
