@@ -1,14 +1,18 @@
 import * as React from "react";
 import styled from "styled-components";
-import { stockData } from "../data/data";
+import { Product } from "../data/data";
 import ProductCard from "./Product";
 import { useParams } from "react-router-dom";
 
+type Props = {
+  product: Product[];
+}
+
 const DetailDiv = styled.div``;
 
-const Detail: React.FC = () => {
-  const params = useParams();
-  const prodotto = stockData.find((x) => x.UPC === params.id);
+const Detail: React.FC<Props> = ({product}) => {
+  const params = useParams<{id:string}>();
+  const prodotto = product.find((x) => x.UPC === params.id);
 
   return prodotto ? (
     <DetailDiv>

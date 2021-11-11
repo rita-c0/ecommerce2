@@ -3,9 +3,12 @@ import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import ProductCard from "../components/Product";
 import Footer from "../components/Footer";
-import { stockData } from "../data/data";
 import { Product } from "../data/data";
 import { useState } from "react";
+
+type Props = {
+  product: Product[];
+};
 
 const Container = styled.div`
   height: 100%;
@@ -26,7 +29,7 @@ const CardDiv = styled.div`
   grid-template-columns: 25% 25% 25% 25%;
 `;
 
-const Plp: React.FC = () => {
+const Plp: React.FC<Props> = ({ product }) => {
   const [text, setText] = useState<string>("");
 
   const [active, setActive] = useState<"none" | "in" | "out">("none");
@@ -56,7 +59,7 @@ const Plp: React.FC = () => {
       <PDiv>
         <CardCont>
           <CardDiv>
-            {stockData
+            {product
               .filter(activeFilter)
               .filter(searchFilter)
               .map((e, index) => (
