@@ -1,10 +1,11 @@
 import * as React from "react";
 import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
+import { searchFilterSelector, selectedFilterSelector } from "../app/features/selectors";
+import { filterActions } from "../app/features/actions";
 
-type Props = {
-  text: string;
-  setText: (text: string) => void;
-};
+
+
 
 const Input = styled.input`
   border-left: 1px solid #cfcccf;
@@ -27,7 +28,11 @@ const BtnReset = styled.button`
 `;
 const SearchDiv = styled.div``;
 
-const Search: React.FC<Props> = ({ text, setText }) => {
+const Search: React.FC = () => {
+
+  const text = useSelector(searchFilterSelector);
+  const dispatch = useDispatch() 
+
   return (
     <SearchDiv>
       <Input
@@ -35,9 +40,9 @@ const Search: React.FC<Props> = ({ text, setText }) => {
         id="search"
         placeholder="search"
         value={text}
-        onChange={(event) => setText(event.target.value)}
+        onChange={(event) => dispatch(filterActions.setSearchFilter(event.target.value))}
       ></Input>
-      <BtnReset type="button" onClick={() => setText("")}>
+      <BtnReset type="button" onClick={() => dispatch(filterActions.setSearchFilter(""))}>
         RESET
       </BtnReset>
     </SearchDiv>

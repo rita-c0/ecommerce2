@@ -3,12 +3,7 @@ import styled from "styled-components";
 import Btn from "./Btn";
 import Search from "./Search";
 
-type Props = {
-  active: string;
-  setActive: (active: "none" | "in" | "out") => void;
-  text: string;
-  setText: (text: string) => void;
-};
+
 
 const Grid = styled.div`
   display: grid;
@@ -21,14 +16,14 @@ const Grid = styled.div`
 
 const Logo = styled.div``;
 
-const Navbar: React.FC<Props> = ({ text, setText, active, setActive }) => {
+const Navbar: React.FC = () => {
   return (
     <Grid>
       <Logo>
         <img src="https://via.placeholder.com/150x80" alt="" />
       </Logo>
-      <Btn active={active} setActive={setActive}></Btn>
-      <Search text={text} setText={setText}></Search>
+      <Btn></Btn>
+      <Search></Search>
     </Grid>
   );
 };

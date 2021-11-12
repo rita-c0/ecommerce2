@@ -4,7 +4,10 @@ import Navbar from "../components/Navbar";
 import ProductCard from "../components/Product";
 import Footer from "../components/Footer";
 import { Product } from "../data/data";
-import { useState } from "react";
+// import { useState } from "react";
+import {useSelector} from 'react-redux';
+import {RootState} from '../app/store';
+import { searchFilterSelector, selectedFilterSelector } from "../app/features/selectors";
 
 type Props = {
   product: Product[];
@@ -30,9 +33,9 @@ const CardDiv = styled.div`
 `;
 
 const Plp: React.FC<Props> = ({ product }) => {
-  const [text, setText] = useState<string>("");
+  const text = useSelector(searchFilterSelector);
 
-  const [active, setActive] = useState<"none" | "in" | "out">("none");
+  const active = useSelector(selectedFilterSelector);
 
   const searchFilter = (prod: Product) => {
     return prod.name.toLowerCase().includes(text.toLowerCase());
@@ -50,12 +53,7 @@ const Plp: React.FC<Props> = ({ product }) => {
   };
   return (
     <Container>
-      <Navbar
-        text={text}
-        setText={setText}
-        active={active}
-        setActive={setActive}
-      />
+      <Navbar />
       <PDiv>
         <CardCont>
           <CardDiv>

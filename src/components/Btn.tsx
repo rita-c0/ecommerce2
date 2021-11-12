@@ -1,11 +1,10 @@
 import * as React from "react";
-import styled from "styled-components";
 import "../App.css";
-
-type Props = {
-  active: string;
-  setActive: (active: "none" | "in" | "out") => void;
-};
+import styled from "styled-components";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { filterActions } from "../app/features/actions";
+import { selectedFilterSelector } from "../app/features/selectors";
 
 const Btndiv = styled.div`
   margin-top: 20px;
@@ -33,13 +32,18 @@ const TglBtn = styled.button`
   }
 `;
 
-const Btn: React.FC<Props> = ({ active, setActive }) => {
+const Btn: React.FC = () => {
+
+  const active = useSelector(selectedFilterSelector);
+  const dispatch = useDispatch() 
+
+
   return (
     <Btndiv className="Btn">
       <TglBtn
         className={active === "in" ? "in btncl selected" : "in btncl"}
         type="button"
-        onClick={() => (active === "in" ? setActive("none") : setActive("in"))}
+        onClick={() => (active === "in" ? dispatch(filterActions.setSelectedFilter("none")) : dispatch(filterActions.setSelectedFilter("in")))}
       >
         IN STOCK
       </TglBtn>
@@ -47,7 +51,7 @@ const Btn: React.FC<Props> = ({ active, setActive }) => {
         className={active === "out" ? "out btncl selected" : "out btncl"}
         type="button"
         onClick={() =>
-          active === "out" ? setActive("none") : setActive("out")
+          active === "out" ? dispatch(filterActions.setSelectedFilter("none")) : dispatch(filterActions.setSelectedFilter("out"))
         }
       >
         OUT OF STOCK
