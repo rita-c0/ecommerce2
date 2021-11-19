@@ -1,19 +1,14 @@
 import * as React from "react";
 import styled from "styled-components";
 import { Product } from "../data/data";
-import ProductCard from "./Product";
 import { useParams } from "react-router-dom";
-import Footer from "./Footer";
-import PBar from "./PBar";
+import Footer from "../components/Footer";
+import PBar from "../components/PBar";
 import { useState } from "react";
 
 type Props = {
   products: Product[];
 };
-
-const NDiv = styled.div`
-  margin-top: 10px;
-`;
 
 const CarouselDiv = styled.div`
   margin-top: 50px;
@@ -77,7 +72,7 @@ const Detail: React.FC<Props> = ({ products }) => {
         </TextDiv>
       </Container>
 
-      {product.variants ? (
+      {product.variants.length > 0 ? (
         <CarouselDiv>
           {product.variants.length > 0 ? <h1>Available colors</h1> : null}
           <CarouselContainer>

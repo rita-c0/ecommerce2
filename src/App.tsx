@@ -2,7 +2,7 @@ import * as React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Plp from "./pages/Plp";
-import Detail from "./components/Detail";
+import Detail from "./pages/Pdp";
 import { useEffect, useState } from "react";
 import { Product } from "./data/data";
 
