@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { searchFilterSelector, selectedFilterSelector } from "../app/features/selectors";
+import { searchFilterSelector } from "../app/features/selectors";
 import { filterActions } from "../app/features/actions";
 
 
@@ -32,7 +32,7 @@ const Search: React.FC = () => {
 
   const text = useSelector(searchFilterSelector);
   const dispatch = useDispatch() 
-
+ 
   return (
     <SearchDiv>
       <Input

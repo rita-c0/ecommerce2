@@ -4,13 +4,11 @@ import Navbar from "../components/Navbar";
 import ProductCard from "../components/Product";
 import Footer from "../components/Footer";
 import { Product } from "../data/data";
-// import { useState } from "react";
-import {useSelector} from 'react-redux';
-import {RootState} from '../app/store';
-import { searchFilterSelector, selectedFilterSelector } from "../app/features/selectors";
+import { useSelector } from "react-redux";
+import {searchFilterSelector, selectedFilterSelector,} from "../app/features/selectors";
 
 type Props = {
-  product: Product[];
+  products: Product[];
 };
 
 const Container = styled.div`
@@ -32,7 +30,7 @@ const CardDiv = styled.div`
   grid-template-columns: 25% 25% 25% 25%;
 `;
 
-const Plp: React.FC<Props> = ({ product }) => {
+const Plp: React.FC<Props> = ({ products }) => {
   const text = useSelector(searchFilterSelector);
 
   const active = useSelector(selectedFilterSelector);
@@ -57,7 +55,7 @@ const Plp: React.FC<Props> = ({ product }) => {
       <PDiv>
         <CardCont>
           <CardDiv>
-            {product
+            {products
               .filter(activeFilter)
               .filter(searchFilter)
               .map((e, index) => (
@@ -66,6 +64,7 @@ const Plp: React.FC<Props> = ({ product }) => {
                   name={e.name}
                   price={e.price.current.value}
                   availability={e.availability.stock}
+                  image={e.image}
                 ></ProductCard>
               ))}
           </CardDiv>

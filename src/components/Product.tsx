@@ -7,6 +7,7 @@ type Props = {
   name: string;
   price: number;
   availability: number;
+  image: string;
 };
 
 const Card = styled.div`
@@ -31,7 +32,7 @@ const ProductCard = (props: Props) => {
     <div>
       <Link to={`/dettaglio/${props.upc}`}>
         <Card>
-          <Img src="https://via.placeholder.com/350" alt="" />
+          <Img src={props.image} alt="" />
           <div style={{ marginLeft: "20px", marginBottom: "20px" }}>
             <div style={{ color: "black", fontSize: "20px" }}>{props.name}</div>
             <div style={{ color: "grey", fontSize: "15px" }}>

@@ -4,28 +4,41 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Plp from "./pages/Plp";
 import Detail from "./components/Detail";
 import { useEffect, useState } from "react";
-import {Product} from "./data/data"
+import { Product } from "./data/data";
 
 const App: React.FC = () => {
-const [product, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
 
-useEffect(() => {
-  fetch(
-    "https://assets.fc-dev.instore.oakley.com/assets/products/products.json"
-  )
-    .then((res) => res.json())
-    .then((data) => setProducts(data));
-});
+  const fetchFunc = () => {
+    fetch(
+      "https://assets.fc-dev.instore.oakley.com/assets/products/products.json"
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        data.forEach((element) => {
+          element.image = `https://picsum.photos/350/350?random=${element.UPC}`;
+          element.variants.forEach((el) => {
+            let randomn = Math.round(Math.random() * 100 + 1).toString();
+            el.image = `https://picsum.photos/350/350?random=${randomn}`;
+          });
+        });
+        setProducts(data);
+      });
+  };
+  
+  useEffect(() => {
+    fetchFunc();
+  }, []);
 
   return (
     <div className="App">
-    <Router>
+      <Router>
         <Switch>
           <Route path="/dettaglio/:id">
-            <Detail product={product} />
+            <Detail products={products} />
           </Route>
           <Route path="/">
-            <Plp product={product} />
+            <Plp products={products} />
           </Route>
         </Switch>
       </Router>
